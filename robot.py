@@ -14,10 +14,15 @@ class Robot:
         self.armor = armor
         self.attack = attack
         self.battery_charge = 100
+        self.bonus_defense = 0
 
     def robot_attack(self, dinosaur):
         dinosaur.hp -= (self.weapon.attack +self.attack - dinosaur.scales)
         self.battery_charge -= 10
+
+    def robot_defend(self):
+        self.battery_charge += 20
+        self.bonus_defense = 10
 
     equippable_weapons = [Weapon("Super Sucker", 20), 
                         Weapon("Debris Cannon", 25),

@@ -19,6 +19,7 @@ class Fleet:
             Robot("tank","Armored Roomba +", "Anne", 120, 10, 0)
         ]
         self.active_fleet = []
+        self.active_robot = None
 
     def display_fleet(self):
         for robot in self.active_fleet:

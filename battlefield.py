@@ -1,3 +1,4 @@
+from attack import Attack
 from fleet import Fleet
 from herd import Herd
 
@@ -16,17 +17,28 @@ class Battlefield:
     def choose_lists(self):
         print("Alright," + self.player_name + ".  Are you betting the Roombas will take the gold?  Or do you put your money on the dinosaurs of Brontosoreei II?")
         list_choice = input("Please type a 1 for robots and a 2 for dinosaurs.")
-        if list_choice == "1":
-            #player = Fleet()
+        if list_choice == "1": #(player = fleet, computer = herd)
             self.fleet.active_fleet.append(self.fleet.choose_fleet_type())
             self.fleet.equip_fleet_weapons()
             self.herd.active_herd = self.herd.dino_balanced
-            self.battle()
-        if list_choice == "2":
-            #player = self.herd
-            self.herd.active_herd = self.herd.choose_herd_type()
-            #computer = self.fleet
-            self.battle()
+            print("We here like the idea of Roombas sucking up debris and firing it at unsuspecting dinos!  Roombas should go first! Sorry, dinos!")
+            
+        if list_choice == "2": #(player = herd, computer = fleet)
+            self.herd.active_herd.append(self.herd.choose_herd_type())
+            self.fleet.active_fleet=self.fleet.robot_balanced
+            print("We here like the idea of dinosaurs gnawing on the Roombas, so we think dinosaurs should go first!  Sorry, Roombas!")
+            self.choose_active_dino()
+
+    def choose_active_dino(self):
+        self.herd.display_dino_list()
+        dino_choice = input("Which of your dinosaurs would you like to activate for this turn?  Please enter their numeric representation.")
+        if dino_choice == "1":
+            self.herd.active_dino = self.herd.active_herd[0]
+        if dino_choice == "2":
+            self.herd.active_dino = self.herd.active_herd[1]
+        if dino_choice == "3":
+            self.herd.active_dino = self.herd.active_herd[2]
+        print(self.herd.active_dino.name)
 
     def battle(self):
         d=0
