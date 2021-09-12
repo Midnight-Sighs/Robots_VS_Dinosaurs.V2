@@ -11,7 +11,10 @@ class Battlefield:
     def display_welcome(self):
         print("Welcome to our feature battle of Dinosaurs vs Robots!  We have beings from across the galaxy that have prepared teams for you to battle with!  Today, we have the Roombers supplying fleets of modified (and enlarged!) Roombas!  From the planet Brontosoreei II, we have herds of dinosaurs for you to choose from!")
         self.player_name = input("Tell us, master commander, what would you like to be referred to as today?  You don't have to use a name.  You could be whoever or whatever you wish today!  ")
-        print("Your name is " + self.player_name+".  Huh.  Interesting...")
+        if self.player_name == "Smelly Cheese" or self.player_name == "smelly cheese":
+            print(" Really?? Smelly Cheese is best on toast!!")
+        else:
+            print("Your name is " + self.player_name+".  Huh.  Interesting...")
         self.choose_lists()
 
     def choose_lists(self):
@@ -38,7 +41,11 @@ class Battlefield:
             self.herd.active_dino = self.herd.active_herd[1]
         if dino_choice == "3":
             self.herd.active_dino = self.herd.active_herd[2]
-        print(self.herd.active_dino.name)
+        print("You have selected", self.herd.active_dino.name)
+
+    def choose_active_robot(self):
+        self.fleet.display_robots_in_list()
+        robot_choice = input("Which of your robots would you like to activate this turn?  Please enter the numerical representation.  ")
 
     def battle(self):
         d=0

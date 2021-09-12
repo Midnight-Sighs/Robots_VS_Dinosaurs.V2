@@ -24,10 +24,10 @@ class Robot:
         self.battery_charge += 20
         self.bonus_defense = 10
 
-    equippable_weapons = [Weapon("Super Sucker", 20), 
-                        Weapon("Debris Cannon", 25),
-                        Weapon("Debris Blaster", 5),
-                        Weapon("Debris Sucker", 15)]
+    equippable_weapons = [Weapon("Super Sucker", 20, ("The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!")), 
+                        Weapon("Debris Cannon", 25, "The Roomba sucks up all the debris in the immediate area and fires it at the dinosaurs! OOF!"),
+                        Weapon("Debris Blaster", 5, "That little blaster may look like an energy weapon, but it fires debris at the dinosaur! Hurts more than you would expect!"),
+                        Weapon("Debris Sucker", 15, "While your average Roomba sucks up dander and dust, these Roombas have the ability to suck the scales clean off those dinosaurs!")]
 
     def equip_weapon(self):
         i = random_int(0, 3)
