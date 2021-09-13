@@ -39,3 +39,36 @@ class Herd:
            print(  f" Dino {j} -- Name: {self.active_herd[i].name} -- Hit Points: {self.active_herd[i].hp} -- Stamina: {self.active_herd[i].stamina} -- Bonus Attack Damage: {self.active_herd[1].attack}")
            i+=1
            j+=1
+
+    def choose_active_dinosaur(self):
+        self.display_dino_list()
+        dino_choice = input("Which of your dinosaurs would you like to activate for this turn?  Please enter their numeric representation.")
+        if dino_choice == "1":
+            if self.active_herd[0].hp >0:
+                self.active_dino = self.active_herd[0]
+                print("You have selected", self.active_dino.name)
+            else:
+                print("That dinosaur was BLOWN away by those debris cannons!  Please select another")
+                self.choose_active_dinosaur()
+        if dino_choice == "2":
+            if self.active_herd[1].hp >0:
+                self.active_dino = self.active_herd[1]
+                print("You have selected", self.active_dino.name)
+            else:
+                print("That poor dinosaur had his limbs sucked off and he suffered a horrible death.  Please select another one.")
+                self.choose_active_dinosaur()
+        if dino_choice == "3":
+            if self.active_herd[2].hp >0:
+                self.active_dino = self.active_herd[2]
+                print("You have selected", self.active_dino.name)
+            else:
+                print("That dinosaur has been suckered by the Roombas...into death!")
+                self.choose_active_dinosaur()
+
+    def assign_computer_dinosaur(self):
+        if self.active_herd[0].hp>0:
+                self.active_dino = self.active_herd[0]
+        elif self.active_herd[1].hp>0:
+            self.active_dino = self.active_herd[1]
+        else:
+            self.active_dino = self.active_herd[2]

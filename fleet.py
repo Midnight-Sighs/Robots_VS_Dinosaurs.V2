@@ -23,7 +23,7 @@ class Fleet:
     
     def equip_fleet_weapons(self):
         for robot in self.active_fleet:
-            Robot.equip_weapon(robot)
+            robot.equip_weapon()
 
     def choose_fleet_type(self):
         print("Hello!  We from planet Roomba would like to offer a sampling of a variety or different types of Roombas!  You can pick our balanced list that includes three different types of Roombas!  Or, if you prefer survivability, we have some heavy-duty Roombas available in our tank group.  Lastly, we have some Roombas that are built to take some damage!  They're just a bit more fragile.")
@@ -34,6 +34,9 @@ class Fleet:
             self.active_fleet = self.robot_tank
         if fleet_choice == "3":
             self.active_fleet = self.robot_squish
+        else:
+            print("Please enter a valid number between 1 and 3")
+            self.choose_fleet_type()
 
     def display_robots_in_list(self):
         print("Your current robots and their stats are as follows: ")
@@ -43,3 +46,36 @@ class Fleet:
             print (f"Robot {j} -- Name: {self.active_fleet[i].name} -- Hit Points: {self.active_fleet[i].hp} -- Battery Charge: {self.active_fleet[i].battery_charge} -- Bonus Attack Damage: {self.active_fleet[i].attack}")
             i+=1
             j+=1
+
+    def choose_active_robot(self):
+        self.display_robots_in_list()
+        robot_choice = input("Which of your robots would you like to activate this turn?  Please enter the numerical representation.  ")
+        if robot_choice == "1":
+            if self.active_fleet[0].hp >0:
+                self.active_robot = self.active_fleet[0]
+                print("You have selected", self.active_robot.name)
+            else:
+                print("That Roomba has been destroyed, please select another one.")
+                self.choose_active_robot()
+        if robot_choice == "2":
+            if self.active_fleet[1].hp>0:
+                self.active_robot = self.active_fleet[1]
+                print("You have selected", self.active_robot.name)
+            else:
+                print("The Roomba you've attempted to select is dead.  You can't reactivate him!")
+                self.choose_active_robot()
+        if robot_choice == "3":
+            if self.active_fleet[2].hp>0:
+                self.active_robot = self.active_fleet[2]
+                print("You have selected", self.active_robot.name)
+            else:
+                print("That Roomba has been brutally shattered by a dinosaur, please select another!")
+                self.choose_active_robot()
+
+    def assign_computer_robot(self):
+        if self.active_fleet[0].hp>0:
+            self.active_robot = self.active_fleet[0]
+        elif self.active_fleet[1].hp>0:
+            self.active_robot = self.active_fleet[1]
+        else:
+            self.active_robot = self.active_fleet[2]

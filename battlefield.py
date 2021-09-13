@@ -9,7 +9,8 @@ class Battlefield:
         self.r = 0  #robot death counter
         self.player_fleet = False
         self.player_herd = False
-        self.player_name = self.display_welcome()
+        self.player_name = ""
+        self.display_welcome()
 
     def display_welcome(self):
         print("Welcome to our feature battle of Dinosaurs vs Robots!  We have beings from across the galaxy that have prepared teams for you to battle with!  Today, we have the Roombers supplying fleets of modified (and enlarged!) Roombas!  From the planet Brontosoreei II, we have herds of dinosaurs for you to choose from!")
@@ -17,11 +18,11 @@ class Battlefield:
         if self.player_name == "Smelly Cheese" or self.player_name == "smelly cheese":
             print(" Really?? Smelly Cheese is best on toast!!")
         else:
-            print("Your name is " + self.player_name+".  Huh.  Interesting...")
+            print("Your name is " + self.player_name+".  Huh.  Interesting...\n")
         self.choose_lists()
 
     def choose_lists(self):
-        print("Alright," + self.player_name + ".  Are you betting the Roombas will take the gold?  Or do you put your money on the dinosaurs of Brontosoreei II?")
+        print("Alright, " + self.player_name + ".  Are you betting the Roombas will take the gold?  Or do you put your money on the dinosaurs of Brontosoreei II?")
         list_choice = input("Please type a 1 for robots and a 2 for dinosaurs.")
         if list_choice == "1": #(player = fleet, computer = herd)
             self.player_fleet = True
@@ -36,9 +37,20 @@ class Battlefield:
             self.fleet.active_fleet=self.fleet.robot_balanced
             print("We here like the idea of dinosaurs gnawing on the Roombas, so we think dinosaurs should go first!  Sorry, Roombas!")
             self.battle_flow()
+        else: 
+            print("Please put in \"1\" or \"2\"")
+            self.choose_lists()
     
+    def choose_active_creatures(self):
+        if self.player_herd == True:
+            self.herd.choose_active_dinosaur()
+            self.fleet.assign_computer_robot()
+        if self.player_fleet == True:
+            self.fleet.choose_active_robot()
+            self.herd.assign_computer_dinosaur()
+
     def battle_flow(self):
-        while self.r <3 or self.d <3:
+        while self.r <3 and self.d <3:
             if self.player_herd == True:
                 self.herd_true_turn_order()
             if self.player_fleet == True:
@@ -51,69 +63,6 @@ class Battlefield:
             print("Your team of Roombas have eviscerated the dinosaurs! Congratulations!")
         if self.player_fleet == True and self.r == 3:
             print("The dinosaurs have torn your robots apart.  You lose.")
-
-    def choose_active_dino(self):
-        self.herd.display_dino_list()
-        dino_choice = input("Which of your dinosaurs would you like to activate for this turn?  Please enter their numeric representation.")
-        if dino_choice == "1":
-            if self.herd.active_herd[0].hp >0:
-                self.herd.active_dino = self.herd.active_herd[0]
-                print("You have selected", self.herd.active_dino.name)
-            else:
-                print("That dinosaur was BLOWN away by those debris cannons!  Please select another")
-                self.choose_active_dino()
-        if dino_choice == "2":
-            if self.herd.active_herd[1].hp >0:
-                self.herd.active_dino = self.herd.active_herd[1]
-                print("You have selected", self.herd.active_dino.name)
-            else:
-                print("That poor dinosaur had his limbs sucked off and he suffered a horrible death.  Please select another one.")
-                self.choose_active_dino()
-        if dino_choice == "3":
-            if self.herd.active_herd[2].hp >0:
-                self.herd.active_dino = self.herd.active_herd[2]
-                print("You have selected", self.herd.active_dino.name)
-            else:
-                print("That dinosaur has been suckered by the Roombas...into death!")
-        #assigning computer's active robot
-        if self.fleet.active_fleet[0].hp>0:
-            self.fleet.active_robot = self.fleet.active_fleet[0]
-        elif self.fleet.active_fleet[1].hp>0:
-            self.fleet.active_robot = self.fleet.active_fleet[1]
-        else:
-            self.fleet.active_robot = self.fleet.active_fleet[2]
-
-    def choose_active_robot(self):
-        self.fleet.display_robots_in_list()
-        robot_choice = input("Which of your robots would you like to activate this turn?  Please enter the numerical representation.  ")
-        if robot_choice == "1":
-            if self.fleet.active_fleet[0].hp >0:
-                self.fleet.active_robot = self.fleet.active_fleet[0]
-                print("You have selected", self.fleet.active_robot.name)
-            else:
-                print("That Roomba has been destroyed, please select another one.")
-                self.choose_active_robot()
-        if robot_choice == "2":
-            if self.fleet.active_fleet[1].hp>0:
-                self.fleet.active_robot = self.fleet.active_fleet[1]
-                print("You have selected", self.fleet.active_robot.name)
-            else:
-                print("The Roomba you've attempted to select is dead.  You can't reactivate him!")
-                self.choose_active_robot()
-        if robot_choice == "3":
-            if self.fleet.active_fleet[2].hp>0:
-                self.fleet.active_robot = self.fleet.active_fleet[2]
-                print("You have selected", self.fleet.active_robot.name)
-            else:
-                print("That Roomba has been brutally shattered by a dinosaur, please select another!")
-                self.choose_active_robot()
-        #setting computer active dino
-        if self.herd.active_herd[0].hp>0:
-            self.herd.active_dino = self.herd.active_herd[0]
-        elif self.herd.active_herd[1].hp>0:
-            self.herd.active_dino = self.herd.active_herd[1]
-        else:
-            self.herd.active_dino = self.herd.active_herd[2]
 
     def player_dinosaur_attack_phase(self):
         a_or_d = input("Would you like your dinosaur to 1. attack or 2. defend?")
@@ -142,7 +91,8 @@ class Battlefield:
             self.herd.active_dino.dinosaur_attack(self.fleet.active_robot)
 
     def herd_true_turn_order(self):
-        self.choose_active_dino()
+        self.herd.choose_active_dinosaur()
+        self.fleet.assign_computer_robot()
         self.player_dinosaur_attack_phase()
         print(f"You have done: {self.herd.active_dino.damage} damage to your enemies hit points!")
         if self.fleet.active_robot.hp <=0:
@@ -162,7 +112,8 @@ class Battlefield:
         self.fleet.active_robot.bonus_defense = 0
 
     def fleet_true_turn_order(self):
-        self.choose_active_robot()
+        self.fleet.choose_active_robot()
+        self.herd.assign_computer_dinosaur()
         self.player_robot_attack_phase()
         print(f" You have done: {self.fleet.active_robot.damage} damage to your opponent's Robot!")
         if self.herd.active_dino.hp<=0:
