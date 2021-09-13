@@ -89,21 +89,21 @@ class Battlefield:
         if robot_choice == "1":
             if self.fleet.active_fleet[0].hp >0:
                 self.fleet.active_robot = self.fleet.active_fleet[0]
-                print("You have selected", self.fleet.active_robot)
+                print("You have selected", self.fleet.active_robot.name)
             else:
                 print("That Roomba has been destroyed, please select another one.")
                 self.choose_active_robot()
         if robot_choice == "2":
             if self.fleet.active_fleet[1].hp>0:
                 self.fleet.active_robot = self.fleet.active_fleet[1]
-                print("You have selected", self.fleet.active_robot)
+                print("You have selected", self.fleet.active_robot.name)
             else:
                 print("The Roomba you've attempted to select is dead.  You can't reactivate him!")
                 self.choose_active_robot()
         if robot_choice == "3":
             if self.fleet.active_fleet[2].hp>0:
                 self.fleet.active_robot = self.fleet.active_fleet[2]
-                print("You have selected", self.fleet.active_robot)
+                print("You have selected", self.fleet.active_robot.name)
             else:
                 print("That Roomba has been brutally shattered by a dinosaur, please select another!")
                 self.choose_active_robot()
@@ -144,23 +144,41 @@ class Battlefield:
     def herd_true_turn_order(self):
         self.choose_active_dino()
         self.player_dinosaur_attack_phase()
+        print(f"You have done: {self.herd.active_dino.damage} damage to your enemies hit points!")
         if self.fleet.active_robot.hp <=0:
             print("A roomba has been desimated by your dinosaur!")
             self.r+=1
+            if self.r == 3:
+                return
+        print("Now it's your opponent's turn!")
         self.computer_robot_attack_phase()
+        print(f"Their roomba has hit you for: {self.fleet.active_robot.damage} damage.")
         if self.herd.active_dino.hp <=0:
             print("One of your dinosaurs has fallen! NOO!")
             self.d+=1
+            if self.d == 3:
+                return
+        self.herd.active_dino.bonus_defense = 0
+        self.fleet.active_robot.bonus_defense = 0
 
     def fleet_true_turn_order(self):
-        self.choose_active_robot
+        self.choose_active_robot()
         self.player_robot_attack_phase()
+        print(f" You have done: {self.fleet.active_robot.damage} damage to your opponent's Robot!")
         if self.herd.active_dino.hp<=0:
             print("One of your Roombas blew a dinosaur away!")
             self.d+=1
+            if self.d == 3:
+                return
+        print("Now it's your opponent's turn.")
         self.computer_dinosaur_attack_phase()
+        print(f"They have done {self.herd.active_dino.damage} damage to you.")
         if self.fleet.active_robot.hp<=0:
             print("One of your Roombas has fallen! OH NO!!")
             self.r+=1
+            if self.r == 3:
+                return
+        self.herd.active_dino.bonus_defense = 0
+        self.fleet.active_robot.bonus_defense = 0
 
         

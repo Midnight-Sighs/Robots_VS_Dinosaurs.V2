@@ -38,7 +38,7 @@ class Fleet:
     def display_robots_in_list(self):
         print("Your current robots and their stats are as follows: ")
         i = 0
-        j = 0
+        j = 1
         while i < len(self.active_fleet):
             print (f"Robot {j} -- Name: {self.active_fleet[i].name} -- Hit Points: {self.active_fleet[i].hp} -- Battery Charge: {self.active_fleet[i].battery_charge} -- Bonus Attack Damage: {self.active_fleet[i].attack}")
             i+=1

@@ -12,14 +12,16 @@ class Dinosaur:
         self.stamina = 100
         self.scales = scales
         self.bonus_defense = 0
+        self.damage = 0
     
-    possible_attacks = [Attack("Claws", 14, "Your dinosaur swipes at a Roomba!  Those claws are SHHHHEEEEAAARP"),
-                    Attack("Bite", 20, "Your dinosaur gnaws on a Roomba!"),
-                    Attack("Spit", 10, "Your dinosaur just spit! Yeech!  It does burn, though!")]
+    possible_attacks = [Attack("Claws", 25, "Your dinosaur swipes at a Roomba!  Those claws are SHHHHEEEEAAARP"),
+                    Attack("Bite", 30, "Your dinosaur gnaws on a Roomba!"),
+                    Attack("Spit", 20, "Your dinosaur just spit! Yeech!  It does burn, though!")]
 
     def dinosaur_attack(self, robot):
         i = random_int(0, 2)
-        robot.hp -= (self.attack + self.possible_attacks[i].attack) - (robot.armor + robot.flux_shield())
+        self.damage = (self.attack + self.possible_attacks[i].attack) - (robot.armor + robot.flux_shield() + robot.bonus_defense)
+        robot.hp -= self.damage
         self.stamina -= 10
         print(self.possible_attacks[i].flavor_text)
 
