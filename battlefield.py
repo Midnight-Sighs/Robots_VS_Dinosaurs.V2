@@ -95,15 +95,15 @@ class Battlefield:
         self.player_dinosaur_attack_phase()
         print(f"You have done: {self.herd.active_dino.damage} damage to your enemies hit points!\n")
         if self.fleet.active_robot.hp <=0:
-            print("A roomba has been desimated by your dinosaur!")
+            print("\nA roomba has been desimated by your dinosaur!")
             self.r+=1
             if self.r == 3:
                 return
-        print("Now it's your opponent's turn!\n\n")
+        print("Now it's your opponent's turn!")
         self.computer_robot_attack_phase()
         print(f"Their roomba has hit you for: {self.fleet.active_robot.damage} damage.\n")
         if self.herd.active_dino.hp <=0:
-            print("One of your dinosaurs has fallen! NOO!")
+            print("\nOne of your dinosaurs has fallen! NOO!")
             self.d+=1
             if self.d == 3:
                 return
@@ -114,9 +114,9 @@ class Battlefield:
         self.fleet.choose_active_robot()
         self.herd.assign_computer_dinosaur()
         self.player_robot_attack_phase()
-        print(f" You have done: {self.fleet.active_robot.damage} damage to your opponent's Robot!\n")
+        print(f"You have done: {self.fleet.active_robot.damage} damage to your opponent's Robot!\n")
         if self.herd.active_dino.hp<=0:
-            print("One of your Roombas blew a dinosaur away!")
+            print("\nOne of your Roombas blew a dinosaur away!")
             self.d+=1
             if self.d == 3:
                 return
@@ -124,7 +124,7 @@ class Battlefield:
         self.computer_dinosaur_attack_phase()
         print(f"They have done {self.herd.active_dino.damage} damage to you.\n")
         if self.fleet.active_robot.hp<=0:
-            print("One of your Roombas has fallen! OH NO!!")
+            print("\nOne of your Roombas has fallen! OH NO!!")
             self.r+=1
             if self.r == 3:
                 return
