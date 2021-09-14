@@ -1,6 +1,6 @@
 from robot import random_int
 from attack import Attack
-import random
+
 
 class Dinosaur:
     def __init__(self, type, breed, name, hp, attack, scales):

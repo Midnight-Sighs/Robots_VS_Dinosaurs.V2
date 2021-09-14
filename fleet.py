@@ -1,8 +1,10 @@
 from robot import Robot
+from validation import Validation
 
 
 class Fleet:
     def __init__(self):
+        self.valid = Validation()
         self.robot_balanced = [
             Robot("squish","Mega Roomba ++", "Art", 80, 0, 5),
             Robot("basic", "Roomba", "Bob", 100, 5, 0),
@@ -26,17 +28,14 @@ class Fleet:
             robot.equip_weapon()
 
     def choose_fleet_type(self):
-        print("Hello!  We from planet Roomba would like to offer a sampling of a variety or different types of Roombas!  You can pick our balanced list that includes three different types of Roombas!  Or, if you prefer survivability, we have some heavy-duty Roombas available in our tank group.  Lastly, we have some Roombas that are built to take some damage!  They're just a bit more fragile.")
-        fleet_choice = input("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy Roombas, type 3.")
+        print("Hello!  We from planet Roomba would like to offer a sampling of a variety or different types of Roombas!  You can pick our balanced list that includes three different types of Roombas!  Or, if you prefer survivability, we have some heavy-duty Roombas available in our tank group.  Lastly, we have some Roombas that are built to take some damage!  They're just a bit more fragile.\n")
+        fleet_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy Roombas, type 3.  ")
         if fleet_choice == "1":
             self.active_fleet = self.robot_balanced
         if fleet_choice == "2":
             self.active_fleet = self.robot_tank
         if fleet_choice == "3":
             self.active_fleet = self.robot_squish
-        else:
-            print("Please enter a valid number between 1 and 3")
-            self.choose_fleet_type()
 
     def display_robots_in_list(self):
         print("Your current robots and their stats are as follows: ")
@@ -55,21 +54,21 @@ class Fleet:
                 self.active_robot = self.active_fleet[0]
                 print("You have selected", self.active_robot.name)
             else:
-                print("That Roomba has been destroyed, please select another one.")
+                print("That Roomba has been destroyed, please select another one.\n")
                 self.choose_active_robot()
         if robot_choice == "2":
             if self.active_fleet[1].hp>0:
                 self.active_robot = self.active_fleet[1]
                 print("You have selected", self.active_robot.name)
             else:
-                print("The Roomba you've attempted to select is dead.  You can't reactivate him!")
+                print("The Roomba you've attempted to select is dead.  You can't reactivate him!\n")
                 self.choose_active_robot()
         if robot_choice == "3":
             if self.active_fleet[2].hp>0:
                 self.active_robot = self.active_fleet[2]
                 print("You have selected", self.active_robot.name)
             else:
-                print("That Roomba has been brutally shattered by a dinosaur, please select another!")
+                print("That Roomba has been brutally shattered by a dinosaur, please select another!\n")
                 self.choose_active_robot()
 
     def assign_computer_robot(self):
