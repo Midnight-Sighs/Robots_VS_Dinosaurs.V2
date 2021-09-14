@@ -20,7 +20,7 @@ class Robot:
         self.damage = 0
 
     def robot_attack(self, dinosaur):
-        if self.battery_charge <= 10:
+        if self.battery_charge <= 10+self.weapon.battery_cost:
             print("Your robot does not have enough Battery Charge to initiate the attack.  It must defend instead.")
             self.robot_defend()
             return
@@ -64,19 +64,19 @@ class Robot:
     def equip_weapon_choice(self, weapon_list):
         print("You may equip the following weapons:")
         self.weapon.display_weapon_options(weapon_list)
-        user_input = self.valid.valid_int("Please enter the numeric value for the weapon you want to equip  ", len(self.basic_equippable_weapons))
+        user_input = self.valid.valid_int("Please enter the numeric value for the weapon you want to equip  ", len(weapon_list))
         i = user_input -1
         self.weapon = self.basic_equippable_weapons[i]
 
     def equip_computer_weapons(self):
         if self.type == "basic":
-            i = random_int(0, len(self.basic_equippable_weapons))
+            i = random_int(0, len(self.basic_equippable_weapons)-1)
             self.weapon = self.basic_equippable_weapons[i]
         if self.type == "squish":
-            i = random_int(0, len(self.squish_equippable_weapons))
+            i = random_int(0, len(self.squish_equippable_weapons)-1)
             self.weapon = self.squish_equippable_weapons[i]
         if self.type == "tank":
-            i = random_int(0, len(self.tank_equipable_weapons))
+            i = random_int(0, len(self.tank_equipable_weapons)-1)
             self.weapon = self.tank_equipable_weapons[i]
 
     def equip_random_weapon(self):

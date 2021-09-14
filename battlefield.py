@@ -65,9 +65,9 @@ class Battlefield:
             print("The dinosaurs have torn your robots apart.  \nYou lose.")
 
     def player_dinosaur_attack_phase(self):
-        a_or_d = self.validation.valid_1_2("Would you like your dinosaur to 1. attack or 2. defend?  ")
+        a_or_d = self.validation.valid_1_2("Would you like your dinosaur to attack(1) or defend?(1)  ")
         if a_or_d == "1":
-            self.herd.active_dino.dinosaur_attack(self.fleet.active_robot)
+            self.herd.active_dino.pick_dinosaur_attack(self.fleet.active_robot)
         if a_or_d == "2":
             self.herd.active_dino.dinosaur_defend()
 
