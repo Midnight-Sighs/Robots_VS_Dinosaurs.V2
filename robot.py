@@ -12,7 +12,7 @@ class Robot:
         self.model = model
         self.name = name
         self.hp = hp
-        self.weapon = Weapon("Super Sucker", 25, "The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!")
+        self.weapon = Weapon("Super Sucker", 25,30, "The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!")
         self.armor = armor
         self.attack = attack
         self.battery_charge = 100
@@ -27,46 +27,57 @@ class Robot:
         else:
             self.damage = ((self.weapon.attack +self.attack) - (dinosaur.scales + dinosaur.bonus_defense))
             dinosaur.hp -= self.damage
-            self.battery_charge -= 20
+            self.battery_charge -= (10 + self.weapon.battery_cost)
             print(self.weapon.flavor_text)
 
     def robot_defend(self):
         self.battery_charge += 30
         self.bonus_defense = 10
 
-    equippable_weapons = [Weapon("Super Sucker", 20,"The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!"), 
-                        Weapon("Debris Cannon", 25, "The Roomba sucks up all the debris in the immediate area and fires it at the dinosaurs! OOF!"),
-                        Weapon("Debris Blaster", 10, "That little blaster may look like an energy weapon, but it fires debris at the dinosaur! Hurts more than you would expect!"),
-                        Weapon("Debris Sucker", 15, "While your average Roomba sucks up dander and dust, these Roombas have the ability to suck the scales clean off those dinosaurs!")]
+    basic_equippable_weapons = [
+                Weapon("Debris Blaster", 10, 15, "That little blaster may look like an energy weapon, but it fires debris at the dinosaur! Hurts more than you would expect!"),
+                Weapon("Debris Sucker", 15, 20, "While your average Roomba sucks up dander and dust, these Roombas have the ability to suck the scales clean off those dinosaurs!"),
+                Weapon("Boosted Signal", 5, 10, "With a little bit of boost, the Roomba can do some more damage for a low battery cost!")
+    ]
+
+    squish_equippable_weapons = [
+                Weapon("Super Sucker", 20,25,"The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!"), 
+                Weapon("Debris Cannon", 25,30, "The Roomba sucks up all the debris in the immediate area and fires it at the dinosaurs! OOF!"),
+                Weapon("Ultra Sonic Speed Boost", 15,15, "With the speed that only certain Roombas can attain, their ability to hit quick leads to many dangerous hits!")
+    ]
+
+    tank_equipable_weapons = [
+                Weapon("Super Sucker", 20,25,"The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!"), 
+                Weapon("Debris Cannon", 25,30, "The Roomba sucks up all the debris in the immediate area and fires it at the dinosaurs! OOF!"),
+                Weapon("Towering Fall", 10, 15, "Only the largest of Roombas can threaten an enemy with falling on them...")
+    ]
     
     def equip_weapon(self):
         print(f"\nYou must choose what weapons you would like to equip to your robot for the duration of this battle.  You will be unable to choose again once you've made your choice.\nYou are equipping a weapon for {self.name}")
         if self.type == "basic":
-            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Blaster and 2 for a Debris Sucker  ")
-            if user_input == "1":
-                self.weapon = self.equippable_weapons[2]
-            if user_input == "2":
-                self.weapon = self.equippable_weapons[3]
+            self.equip_weapon_choice(self.basic_equippable_weapons)
         if self.type == "squish":
-            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Cannon and 2 for a Super Sucker  ")
-            if user_input == "1":
-                self.weapon = self.equippable_weapons[1]
-            if user_input == "2":
-                self.weapon = self.equippable_weapons[0]
+            self.equip_weapon_choice(self.squish_equippable_weapons)
         if self.type == "tank":
-            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Cannon and 2 for a Super Sucker  ")
-            if user_input == "1":
-                self.weapon = self.equippable_weapons[1]
-            if user_input == "2":
-                self.weapon = self.equippable_weapons[0]
+            self.equip_weapon_choice(self.tank_equipable_weapons)
+
+    def equip_weapon_choice(self, weapon_list):
+        print("You may equip the following weapons:")
+        self.weapon.display_weapon_options(weapon_list)
+        user_input = self.valid.valid_int("Please enter the numeric value for the weapon you want to equip  ", len(self.basic_equippable_weapons))
+        i = user_input -1
+        self.weapon = self.basic_equippable_weapons[i]
 
     def equip_computer_weapons(self):
         if self.type == "basic":
-            self.weapon = self.equippable_weapons[2]
+            i = random_int(0, len(self.basic_equippable_weapons))
+            self.weapon = self.basic_equippable_weapons[i]
         if self.type == "squish":
-            self.weapon = self.equippable_weapons[1]
+            i = random_int(0, len(self.squish_equippable_weapons))
+            self.weapon = self.squish_equippable_weapons[i]
         if self.type == "tank":
-            self.weapon = self.equippable_weapons[0]
+            i = random_int(0, len(self.tank_equipable_weapons))
+            self.weapon = self.tank_equipable_weapons[i]
 
     def equip_random_weapon(self):
         i = random_int(0, 3)

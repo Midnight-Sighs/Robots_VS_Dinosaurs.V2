@@ -11,9 +11,17 @@ class Validation:
                 return user_input
                 
     def valid_to_3(self, prompt):
-        two_ints = False
-        while two_ints == False:
+        three_ints = False
+        while three_ints == False:
             user_input = input(prompt)
             if user_input =="1" or user_input =="2" or user_input == "3":
-                two_ints = True
+                three_ints = True
                 return user_input
+
+    def valid_int(self, prompt, amount):
+        integer = False
+        while integer == False:
+            user_input = int(input(prompt))
+            if (isinstance(user_input, int)) and user_input <= amount:
+                integer = True
+        return user_input
