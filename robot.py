@@ -1,11 +1,13 @@
 from weapon import Weapon
 import random
+from validation import Validation
 
 def random_int(min, max):
     return random.randint(min, max)
 
 class Robot:
     def __init__(self, type, model, name, hp, armor, attack):
+        self.valid = Validation()
         self.type = type
         self.model = model
         self.name = name
@@ -36,8 +38,37 @@ class Robot:
                         Weapon("Debris Cannon", 25, "The Roomba sucks up all the debris in the immediate area and fires it at the dinosaurs! OOF!"),
                         Weapon("Debris Blaster", 10, "That little blaster may look like an energy weapon, but it fires debris at the dinosaur! Hurts more than you would expect!"),
                         Weapon("Debris Sucker", 15, "While your average Roomba sucks up dander and dust, these Roombas have the ability to suck the scales clean off those dinosaurs!")]
-
+    
     def equip_weapon(self):
+        print(f"\nYou must choose what weapons you would like to equip to your robot for the duration of this battle.  You will be unable to choose again once you've made your choice.\nYou are equipping a weapon for {self.name}")
+        if self.type == "basic":
+            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Blaster and 2 for a Debris Sucker  ")
+            if user_input == "1":
+                self.weapon = self.equippable_weapons[2]
+            if user_input == "2":
+                self.weapon = self.equippable_weapons[3]
+        if self.type == "squish":
+            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Cannon and 2 for a Super Sucker  ")
+            if user_input == "1":
+                self.weapon = self.equippable_weapons[1]
+            if user_input == "2":
+                self.weapon = self.equippable_weapons[0]
+        if self.type == "tank":
+            user_input = self.valid.valid_1_2("You may enter a 1 for a Debris Cannon and 2 for a Super Sucker  ")
+            if user_input == "1":
+                self.weapon = self.equippable_weapons[1]
+            if user_input == "2":
+                self.weapon = self.equippable_weapons[0]
+
+    def equip_computer_weapons(self):
+        if self.type == "basic":
+            self.weapon = self.equippable_weapons[2]
+        if self.type == "squish":
+            self.weapon = self.equippable_weapons[1]
+        if self.type == "tank":
+            self.weapon = self.equippable_weapons[0]
+
+    def equip_random_weapon(self):
         i = random_int(0, 3)
         self.weapon = self.equippable_weapons[i]
 

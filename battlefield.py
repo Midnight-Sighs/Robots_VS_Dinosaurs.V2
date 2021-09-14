@@ -37,6 +37,7 @@ class Battlefield:
             self.player_herd = True
             self.herd.active_herd.append(self.herd.choose_herd_type())
             self.fleet.active_fleet=self.fleet.robot_balanced
+            self.fleet.equip_computer_fleet_weapons()
             print("We here like the idea of dinosaurs gnawing on the Roombas, so we think dinosaurs should go first!  Sorry, Roombas!\n\n")
             self.battle_flow()
     

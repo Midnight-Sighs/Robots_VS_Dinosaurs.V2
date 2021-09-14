@@ -38,7 +38,7 @@ class Herd:
         i = 0
         j = 1
         while i < len(self.active_herd):
-           print(  f" Dino {j} -- Name: {self.active_herd[i].name} -- Hit Points: {self.active_herd[i].hp} -- Stamina: {self.active_herd[i].stamina} -- Bonus Attack Damage: {self.active_herd[i].attack}")
+           print(f" Dino {j} -- Name: {self.active_herd[i].name} -- Hit Points: {self.active_herd[i].hp} -- Stamina: {self.active_herd[i].stamina} -- Bonus Attack Damage: {self.active_herd[i].attack}")
            i+=1
            j+=1
 

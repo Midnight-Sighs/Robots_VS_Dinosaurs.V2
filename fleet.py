@@ -27,6 +27,10 @@ class Fleet:
         for robot in self.active_fleet:
             robot.equip_weapon()
 
+    def equip_computer_fleet_weapons(self):
+        for robot in self.active_fleet:
+            robot.equip_computer_weapons()
+
     def choose_fleet_type(self):
         print("Hello!  We from planet Roomba would like to offer a sampling of a variety or different types of Roombas!  You can pick our balanced list that includes three different types of Roombas!  Or, if you prefer survivability, we have some heavy-duty Roombas available in our tank group.  Lastly, we have some Roombas that are built to take some damage!  They're just a bit more fragile.\n")
         fleet_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy Roombas, type 3.  ")
@@ -36,15 +40,6 @@ class Fleet:
             self.active_fleet = self.robot_tank
         if fleet_choice == "3":
             self.active_fleet = self.robot_squish
-
-    def display_robots_in_list(self):
-        print("Your current robots and their stats are as follows: ")
-        i = 0
-        j = 1
-        while i < len(self.active_fleet):
-            print (f"Robot {j} -- Name: {self.active_fleet[i].name} -- Hit Points: {self.active_fleet[i].hp} -- Battery Charge: {self.active_fleet[i].battery_charge} -- Bonus Attack Damage: {self.active_fleet[i].attack}")
-            i+=1
-            j+=1
 
     def choose_active_robot(self):
         self.display_robots_in_list()
@@ -78,3 +73,12 @@ class Fleet:
             self.active_robot = self.active_fleet[1]
         else:
             self.active_robot = self.active_fleet[2]
+
+    def display_robots_in_list(self):
+        print("Your current robots and their stats are as follows: ")
+        i = 0
+        j = 1
+        while i < len(self.active_fleet):
+            print (f"Robot {j} -- Name: {self.active_fleet[i].name} -- Hit Points: {self.active_fleet[i].hp} -- Battery Charge: {self.active_fleet[i].battery_charge} -- Bonus Attack Damage: {self.active_fleet[i].attack} -- Weapon: {self.active_fleet[i].weapon.name}")
+            i+=1
+            j+=1
