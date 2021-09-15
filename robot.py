@@ -19,16 +19,18 @@ class Robot:
         self.bonus_defense = 0
         self.damage = 0
 
-    def robot_attack(self, dinosaur):
+    def robot_attack(self):
         if self.battery_charge <= 10+self.weapon.battery_cost:
             print("Your robot does not have enough Battery Charge to initiate the attack.  It must defend instead.")
             self.robot_defend()
             return
         else:
-            self.damage = ((self.weapon.attack +self.attack) - (dinosaur.scales + dinosaur.bonus_defense))
-            dinosaur.hp -= self.damage
+            self.damage = self.weapon.attack +self.attack
             self.battery_charge -= (10 + self.weapon.battery_cost)
             print(self.weapon.flavor_text)
+
+    def apply_robot_damage(self, dinosaur):
+        dinosaur.hp -= self.damage - (dinosaur.scales + dinosaur.bonus_defense)
 
     def robot_defend(self):
         self.battery_charge += 30

@@ -25,7 +25,7 @@ class Herd:
 
     def choose_herd_type(self):
         print("\nHello!  We from planet Brontosoreei II have a voraaaacious selection of dinosaurs for you to WRECK HAVOC!  We have a list with three of our most popular dino types!  We have a group for you who strike fear in the hearts of opponents with a single ROAR!  And those who don't look as terrifying...but certainly are.  \n")
-        herd_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy Dinos, type 3.\n")
+        herd_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy dinos, type 3.\n")
         if herd_choice == "1":
             self.active_herd = self.dino_balanced
         if herd_choice == "2":
