@@ -47,21 +47,21 @@ class Fleet:
         if robot_choice == "1":
             if self.active_fleet[0].hp >0:
                 self.active_robot = self.active_fleet[0]
-                print("You have selected", self.active_robot.name)
+                print(f"You have selected: {self.active_robot.name}\n")
             else:
                 print("That Roomba has been destroyed, please select another one.\n")
                 self.choose_active_robot()
         if robot_choice == "2":
             if self.active_fleet[1].hp>0:
                 self.active_robot = self.active_fleet[1]
-                print("You have selected", self.active_robot.name)
+                print(f"You have selected: {self.active_robot.name}\n")
             else:
                 print("The Roomba you've attempted to select is dead.  You can't reactivate him!\n")
                 self.choose_active_robot()
         if robot_choice == "3":
             if self.active_fleet[2].hp>0:
                 self.active_robot = self.active_fleet[2]
-                print("You have selected", self.active_robot.name)
+                print(f"You have selected: {self.active_robot.name}\n")
             else:
                 print("That Roomba has been brutally shattered by a dinosaur, please select another!\n")
                 self.choose_active_robot()
@@ -69,10 +69,13 @@ class Fleet:
     def assign_computer_robot(self):
         if self.active_fleet[0].hp>0:
             self.active_robot = self.active_fleet[0]
+            print(f"Your opponent has selected {self.active_robot.name}")
         elif self.active_fleet[1].hp>0:
             self.active_robot = self.active_fleet[1]
+            print(f"Your opponent has selected {self.active_robot.name}")
         else:
             self.active_robot = self.active_fleet[2]
+            print(f"Your opponent has selected {self.active_robot.name}")
 
     def display_robots_in_list(self):
         print("Your current robots and their stats are as follows: ")

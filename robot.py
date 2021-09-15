@@ -15,9 +15,10 @@ class Robot:
         self.weapon = Weapon("Super Sucker", 25,30, "The sucking power on that Roomba is so strong, a dino limb is stuck! OUCH!")
         self.armor = armor
         self.attack = attack
-        self.battery_charge = 100
+        self.battery_charge = 60
         self.bonus_defense = 0
         self.damage = 0
+        self.total_damge = 0
 
     def robot_attack(self):
         if self.battery_charge <= 10+self.weapon.battery_cost:
@@ -30,11 +31,16 @@ class Robot:
             print(self.weapon.flavor_text)
 
     def apply_robot_damage(self, dinosaur):
-        dinosaur.hp -= self.damage - (dinosaur.scales + dinosaur.bonus_defense)
+        self.total_damage = self.damage - (dinosaur.scales + dinosaur.bonus_defense)
+        if self.total_damage >0:
+            dinosaur.hp -= self.total_damage
+        else: 
+            self.total_damage = 0
 
     def robot_defend(self):
         self.battery_charge += 30
         self.bonus_defense = 10
+        self.total_damage = 0
 
     basic_equippable_weapons = [
                 Weapon("Debris Blaster", 10, 15, "That little blaster may look like an energy weapon, but it fires debris at the dinosaur! Hurts more than you would expect!"),

@@ -74,7 +74,7 @@ class Battlefield:
     def player_robot_attack_phase(self):
         a_or_d = self.validation.valid_1_2("Would you like your robot to 1. attack or 2. defend?  ")
         if a_or_d == "1":
-            self.fleet.active_robot.robot_attack(self.herd.active_dino)
+            self.fleet.active_robot.robot_attack()
         if a_or_d == "2":
             self.fleet.active_robot.robot_defend()
 
@@ -88,7 +88,7 @@ class Battlefield:
         if self.herd.active_dino.stamina <=20:
             self.herd.active_dino.dinosaur_defend()
         else:
-            self.herd.active_dino.computer_dinosaur_attack()
+            self.herd.active_dino.computer_dinosaur_attack(self.fleet.active_robot)
 
     def herd_true_turn_order(self):
         self.herd.choose_active_dinosaur()
@@ -97,8 +97,8 @@ class Battlefield:
         self.computer_robot_attack_phase()
         self.herd.active_dino.apply_dinosaur_damage(self.fleet.active_robot)
         self.fleet.active_robot.apply_robot_damage(self.herd.active_dino)
-        print(f"You have done: {self.herd.active_dino.damage} damage to your enemies hit points!\n")
-        print(f"Their roomba has hit you for: {self.fleet.active_robot.damage} damage.\n")
+        print(f"You did {self.herd.active_dino.total_damage} damage to your enemy!")
+        print(f"Your enemy did {self.fleet.active_robot.total_damage} damage to you!\n")
         if self.fleet.active_robot.hp <=0:
             print("\nA roomba has been desimated by your dinosaur!")
             self.r+=1
@@ -118,10 +118,8 @@ class Battlefield:
         self.player_robot_attack_phase()
         self.computer_dinosaur_attack_phase()
         self.fleet.active_robot.apply_robot_damage(self.herd.active_dino)
-        self.herd.active_dino.apply_dinosaur_damage(self.fleet.active_robot)
-        print(f"You have done: {self.fleet.active_robot.damage} damage to your opponent's Robot!\n")
-        print("Now it's your opponent's turn.")
-        print(f"They have done {self.herd.active_dino.damage} damage to you.\n")
+        print(f"You have done {self.fleet.active_robot.total_damage} damage to your opponent's Robot!")
+        print(f"They have done {self.herd.active_dino.total_damage} damage to you.")
         if self.herd.active_dino.hp<=0:
             print("\nOne of your Roombas blew a dinosaur away!")
             self.d+=1

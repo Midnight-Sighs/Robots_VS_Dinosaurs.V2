@@ -48,21 +48,21 @@ class Herd:
         if dino_choice == "1":
             if self.active_herd[0].hp >0:
                 self.active_dino = self.active_herd[0]
-                print("You have selected", self.active_dino.name)
+                print(f"You have selected: {self.active_dino.name}\n")
             else:
                 print("That dinosaur was BLOWN away by those debris cannons!  Please select another\n")
                 self.choose_active_dinosaur()
         if dino_choice == "2":
             if self.active_herd[1].hp >0:
                 self.active_dino = self.active_herd[1]
-                print("You have selected", self.active_dino.name)
+                print(f"You have selected: {self.active_dino.name}\n")
             else:
                 print("That poor dinosaur had his limbs sucked off and he suffered a horrible death.  Please select another one.\n")
                 self.choose_active_dinosaur()
         if dino_choice == "3":
             if self.active_herd[2].hp >0:
                 self.active_dino = self.active_herd[2]
-                print("You have selected", self.active_dino.name)
+                print(f"You have selected: {self.active_dino.name}\n")
             else:
                 print("That dinosaur has been suckered by the Roombas...into death!\n")
                 self.choose_active_dinosaur()
@@ -70,7 +70,10 @@ class Herd:
     def assign_computer_dinosaur(self):
         if self.active_herd[0].hp>0:
                 self.active_dino = self.active_herd[0]
+                print(f"Your opponent has selected {self.active_dino.name}")
         elif self.active_herd[1].hp>0:
             self.active_dino = self.active_herd[1]
+            print(f"Your opponent has selected {self.active_dino.name}")
         else:
             self.active_dino = self.active_herd[2]
+            print(f"Your opponent has selected {self.active_dino.name}")

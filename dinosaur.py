@@ -10,10 +10,11 @@ class Dinosaur:
         self.name = name
         self.hp = hp
         self.attack = attack
-        self.stamina = 100
+        self.stamina = 60
         self.scales = scales
         self.bonus_defense = 0
         self.damage = 0
+        self.total_damage = 0
     
     squish_attacks = [
             Attack("Hoard", 25,20, "\nThe dinosaur calls to his friends and they gang up on the Roomba!"),
@@ -48,6 +49,7 @@ class Dinosaur:
     def dinosaur_defend(self):
         self.stamina += 30
         self.bonus_defense += 10
+        self.total_damage = 0
 
     def display_dinosaur_attacks(self, attack_list):
         i = 0
@@ -83,4 +85,8 @@ class Dinosaur:
         robot.hp -= (self.attack+attack_list[i].attack) - (robot.armor + robot.flux_shield() + robot.bonus_defense)
             
     def apply_dinosaur_damage(self, robot):
-        robot.hp -= self.damage - (robot.armor + robot.flux_shield() + robot.bonus_defense)
+        self.total_damage = self.damage - (robot.armor + robot.flux_shield() + robot.bonus_defense)
+        if self.total_damage>0:
+            robot.hp -=self.total_damage
+        else:
+            self.total_damage = 0
