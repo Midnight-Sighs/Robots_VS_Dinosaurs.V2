@@ -1,8 +1,3 @@
-# Robots_VS_Dinosaurs
-
-Welcome to Robots vs Dinosaurs. This is where you'll pick one or the other and try to bash them! Let's be honest, the dinosaurs should win every time but Roombas may put up quite the fight!
-
----
 
 # Robots vs Dinosaurs V2.0
 
