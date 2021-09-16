@@ -24,7 +24,7 @@ class Battlefield:
         self.choose_lists()
 
     def choose_lists(self):
-        print("Alright, " + self.player_name + ".  Are you betting the Roombas will take the gold?  Or do you put your money on the dinosaurs of Brontosoreei II?")
+        print("Alright, " + self.player_name + ".  Are you betting the Roombas will take the gold?  Or do you put your money on the dinosaurs of Brontosoreei III?")
         list_choice = self.validation.valid_1_2("Please type a 1 for robots and a 2 for dinosaurs.  ")
         if list_choice == "1": #(player = fleet, computer = herd)
             self.player_fleet = True

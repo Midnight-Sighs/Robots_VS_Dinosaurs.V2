@@ -19,19 +19,19 @@ class Dinosaur:
     squish_attacks = [
             Attack("Hoard", 25,20, "\nThe dinosaur calls to his friends and they gang up on the Roomba!"),
             Attack("Claws", 10,10, "\nThe dinosaur swipes at a Roomba!  Those claws are SHHHHEEEEAAARP"),
-            Attack("Bite", 15,15, "\nThe dinosaur gnaws on a Roomba!"),
+            Attack("Bite ", 15,15, "\nThe dinosaur gnaws on a Roomba!"),
     ]
 
     basic_attacks = [
-            Attack("Bite", 15, 15, "\nThe dinosaur rakes his class across the roomba!"),
-            Attack("Claws", 5, 5, "\nThose claws may be sharp, but they're not the sharpest! Or the longest..."),
+            Attack("Bite   ", 15, 15, "\nThe dinosaur rakes his claws across the roomba!"),
+            Attack("Claws  ", 5, 5, "\nThose claws may be sharp, but they're not the sharpest! Or the longest..."),
             Attack("Screech",10,10, "\nThat sounds like a banshee in mourning and the poor Roombas seem to be having some glitches as a result!" )
     ]
 
     tank_attacks = [
             Attack("Claws", 15, 20, "\nThose dinos may have some sharp claws, but they don't have the best reach for powerful strike!"),
-            Attack("Bite", 25,25, "\nThat's one bite I would never want to experience myself!!"),
-            Attack("Roar", 10, 15, "\nThat roar is so terrifying even the Roombas can hear it!")
+            Attack("Bite ", 25,25, "\nThat's one bite I would never want to experience myself!!"),
+            Attack("Roar ", 10, 15, "\nThat roar is so terrifying even the Roombas can hear it!")
     ]
 
     def pick_dinosaur_attack(self):
@@ -55,7 +55,7 @@ class Dinosaur:
         i = 0
         j = 1
         for attack in attack_list:
-            print(f"Attack {j} {attack_list[i].name} -- Attack Damage: {attack_list[i].attack} -- Stamina Drain: {attack_list[i].stamina_cost}")
+            print(f"\t -- Attack {j} -- {attack_list[i].name} -- Attack Damage: {attack_list[i].attack} -- Stamina Drain: {attack_list[i].stamina_cost}")
             i+=1
             j+=1
 

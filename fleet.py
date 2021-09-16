@@ -33,7 +33,9 @@ class Fleet:
 
     def choose_fleet_type(self):
         print("\nHello!  We from planet Roomba would like to offer a sampling of a variety or different types of Roombas!  You can pick our balanced list that includes three different types of Roombas!  Or, if you prefer survivability, we have some heavy-duty Roombas available in our tank group.  Lastly, we have some Roombas that are built to take some damage!  They're just a bit more fragile.\n")
-        fleet_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy Roombas, type 3.  ")
+        fleet_choice = self.valid.valid_to_3(
+            "\tPlease enter the proper numeric value for the list you wish to use\n" 
+            "\t-- 1 -- Basic Roombas\n \t-- 2 --  Tanky Roombas\n \t-- 3 -- Squishy Roombas\n")
         if fleet_choice == "1":
             self.active_fleet = self.robot_balanced
         if fleet_choice == "2":

@@ -6,7 +6,18 @@ Welcome to Robots vs Dinosaurs. This is where you'll pick one or the other and t
 
 # Robots vs Dinosaurs V2.0
 
----
+Welcome to the destruction match!  You can play as Roombas from the planet Roombar or as dinosaurs from the planet Brontosoreei III (pronounced Bront-eh-sore-ee-I).  Pick you side and employ your tactics to try to emerge victorious!
+
+### Updates
+
+    2.05
+  - Edited for readability and did some balancing of the numbers.  Each side should have the ability to win.  Changed methods and reorganized things in such a way that it should be easier to add things in the future.
+
+    2.04
+  - Battle Flow is fully operational
+  - Dinosaurs are able to choose different attacks each turn and robots can select a weapon at the beginning of the battle
+  - CPU automatically assigns weapons and selects attacks
+
     2.03
   - Replicated active creatures for the robots
   - Computer active creature set

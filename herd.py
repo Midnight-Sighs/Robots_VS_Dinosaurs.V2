@@ -5,27 +5,29 @@ class Herd:
     def __init__(self):
         self.valid = Validation()
         self.dino_balanced = [
-            Dinosaur("squish","Ceolophysis","Squish",80,15,0 ),
-            Dinosaur("basic", "Dilophosaurus","Spite", 100, 10, 5),
+            Dinosaur("squish","Ceolophysis","Squish ",80 ,15,0 ),
+            Dinosaur("basic", "Dilophosaurus","Spite  ", 100, 10, 5),
             Dinosaur("tank", "Allosaurus", "Frankie", 120, 5,10)
         ]
         self.dino_squish = [
-            Dinosaur("squish","Ceolophysis","Squish",80,15,0 ),
-            Dinosaur("squish","Ceolophysis","Squeeze",80,15,0 ),
-            Dinosaur("basic", "Dilophosaurus","Spite", 100, 10, 5)
+            Dinosaur("squish","Ceolophysis","Squish ",80 ,15,0 ),
+            Dinosaur("squish","Ceolophysis","Squeeze",80 ,15,0 ),
+            Dinosaur("basic", "Dilophosaurus","Spite  ", 100, 10, 5)
         ]
         self.dino_tank = [
-            Dinosaur("basic", "Dilophosaurus", "Spite", 100, 10, 5),
+            Dinosaur("basic", "Dilophosaurus", "Spite  ", 100, 10, 5),
             Dinosaur("tank", "Allosaurus", "Frankie", 120, 5, 10),
-            Dinosaur("tank", "Allosaurus", "Freaky", 120, 5, 10)
+            Dinosaur("tank", "Allosaurus", "Freaky ", 120, 5, 10)
         ]
         self.active_herd = []
         self.active_dino = None
         
 
     def choose_herd_type(self):
-        print("\nHello!  We from planet Brontosoreei II have a voraaaacious selection of dinosaurs for you to WRECK HAVOC!  We have a list with three of our most popular dino types!  We have a group for you who strike fear in the hearts of opponents with a single ROAR!  And those who don't look as terrifying...but certainly are.  \n")
-        herd_choice = self.valid.valid_to_3("If you would like the balanced list, type 1.  For tanks, type 2.  For squishy dinos, type 3.\n")
+        print("\nHello!  We from planet Brontosoreei III have a voRAcious selection of dinosaurs for you to WRECK HAVOC!  We have a list with three of our most popular dino types!  We have a group for you who strike fear in the hearts of opponents with a single ROAR!  And those who don't look as terrifying...but certainly are.  \n")
+        herd_choice = self.valid.valid_to_3(
+            "\tPlease enter the proper numeric value for the list you wish to use\n" 
+            "\t-- 1 -- Basic Dinosaurs\n \t-- 2 -- Tanky Dinosaurs\n \t-- 3 -- Squishy Dinosaurs\n")
         if herd_choice == "1":
             self.active_herd = self.dino_balanced
         if herd_choice == "2":
@@ -38,7 +40,7 @@ class Herd:
         i = 0
         j = 1
         while i < len(self.active_herd):
-           print(f" Dino {j} -- Name: {self.active_herd[i].name} -- Hit Points: {self.active_herd[i].hp} -- Stamina: {self.active_herd[i].stamina} -- Bonus Attack Damage: {self.active_herd[i].attack}")
+           print(f" \t-- Dino {j} -- Name: {self.active_herd[i].name} -- Hit Points: {self.active_herd[i].hp} -- Stamina: {self.active_herd[i].stamina} -- Bonus Attack Damage: {self.active_herd[i].attack}")
            i+=1
            j+=1
 
